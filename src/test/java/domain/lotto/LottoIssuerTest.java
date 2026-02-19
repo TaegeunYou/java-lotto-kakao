@@ -12,9 +12,8 @@ class LottoIssuerTest {
         int count = 1;
         List<Integer> numbers = List.of(6,21,23,24,37,41);
         LottoFactory manualLottoFactory = new ManualLottoFactory(List.of(numbers));
-        LottoIssuer lottoIssuer = new LottoIssuer(manualLottoFactory);
 
-        List<Lotto> lottos = lottoIssuer.issue();
+        List<Lotto> lottos = manualLottoFactory.create();
 
         Assertions.assertThat(lottos.size()).isEqualTo(count);
     }
@@ -23,9 +22,8 @@ class LottoIssuerTest {
     void generate_auto_lotto() {
         int count = 2;
         LottoFactory autoLottoFactory = new AutoLottoFactory(count);
-        LottoIssuer lottoIssuer = new LottoIssuer(autoLottoFactory);
 
-        List<Lotto> lottos = lottoIssuer.issue();
+        List<Lotto> lottos = autoLottoFactory.create();
 
         Assertions.assertThat(lottos.size()).isEqualTo(count);
     }

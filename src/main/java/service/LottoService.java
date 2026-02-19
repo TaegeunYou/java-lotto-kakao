@@ -11,10 +11,10 @@ public class LottoService {
     }
 
     private List<Lotto> issueManualLottos(Purchase purchase) {
-        return new LottoIssuer(new ManualLottoFactory(purchase.getManualLottosNumbers())).issue();
+        return new ManualLottoFactory(purchase.getManualLottosNumbers()).create();
     }
 
     private List<Lotto> issueAutoLottos(Purchase purchase) {
-        return new LottoIssuer(new AutoLottoFactory(purchase.getAutoLottoCount())).issue();
+        return new AutoLottoFactory(purchase.getAutoLottoCount()).create();
     }
 }
