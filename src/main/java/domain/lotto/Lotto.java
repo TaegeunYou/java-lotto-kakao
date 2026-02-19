@@ -11,33 +11,15 @@ public class Lotto {
 
     private final List<LottoNumber> lottoNumbers;
 
-    public Lotto(Random random) {
-        List<Integer> numbers = generateRandomNumbers(random);
-        this.lottoNumbers = generateLottoNumbers(numbers);
-    }
-
     public Lotto(List<Integer> numbers) {
+        validateLotto(numbers);
         this.lottoNumbers = generateLottoNumbers(numbers);
-    }
-
-    private List<Integer> generateRandomNumbers(Random random) {
-        List<Integer> shuffleNumbers = new ArrayList<>();
-        for (int i = MIN_NUMBER; i <= MAX_NUMBER; i++) {
-            shuffleNumbers.add(i);
-        }
-        Collections.shuffle(shuffleNumbers, random);
-        List<Integer> numbers = new ArrayList<>(shuffleNumbers.subList(0, Lotto.LOTTO_SIZE));
-        Collections.sort(numbers);
-        return numbers;
     }
 
     private List<LottoNumber> generateLottoNumbers(List<Integer> numbers) {
-        List<LottoNumber> lottoNumbers = new ArrayList<>();
-        validateLotto(numbers);
-        for (int i : numbers) {
-            lottoNumbers.add(new LottoNumber(i));
-        }
-        return lottoNumbers;
+        return numbers.stream()
+                .map(LottoNumber::new)
+                .toList();
     }
 
     private void validateLotto(List<Integer> numbers){

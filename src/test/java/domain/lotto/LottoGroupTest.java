@@ -23,8 +23,8 @@ public class LottoGroupTest {
 
     @Test
     void generate_auto_lotto() {
-        List<Lotto> autoLottos = new ArrayList<>();
-        autoLottos.add(new Lotto(new Random()));
+        LottoFactory autoLottoFactory = new AutoLottoFactory(1);
+        List<Lotto> autoLottos = autoLottoFactory.create();
 
         LottoGroup lottoGroup = new LottoGroup(Collections.emptyList(), autoLottos);
 

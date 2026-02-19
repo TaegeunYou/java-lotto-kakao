@@ -1,5 +1,6 @@
 package domain.lotto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ManualLottoFactory implements LottoFactory {
@@ -12,8 +13,11 @@ public class ManualLottoFactory implements LottoFactory {
 
     @Override
     public List<Lotto> create() {
-        return lottosNumbers.stream()
-                .map(Lotto::new)
-                .toList();
+        List<Lotto> lottos = new ArrayList<>();
+        for (List<Integer> numbers : lottosNumbers) {
+            Lotto lotto = new Lotto(numbers);
+            lottos.add(lotto);
+        }
+        return lottos;
     }
 }
